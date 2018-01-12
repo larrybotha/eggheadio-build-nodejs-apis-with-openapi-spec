@@ -11,3 +11,9 @@ Each lesson is on its own branch.
 ```bash
 $ npm run dev
 ```
+
+## Swagger Editor
+
+```bash
+$ npm run edit
+```
