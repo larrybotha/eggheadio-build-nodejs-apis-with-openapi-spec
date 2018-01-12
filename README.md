@@ -2,8 +2,18 @@
 
 Learning for https://egghead.io/courses/build-node-js-apis-with-openapi-spec-swagger
 
+## Lessons
+
+Each lesson is on its own branch.
+
 ## Dev
 
 ```bash
 $ npm run dev
+```
+
+## Swagger Editor
+
+```bash
+$ npm run edit
 ```
