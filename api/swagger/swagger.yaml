@@ -1,12 +1,12 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Hello World App
+  title: Todo API
 # during dev, should point to your local machine
 host: localhost:10010
-# basePath prefixes all resource paths
+# basePath prefixes all resource paths 
 basePath: /
-#
+# 
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -18,46 +18,50 @@ consumes:
 produces:
   - application/json
 paths:
-  /hello:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
+  # describe get requests at the baseUrl endpoint
+  /:
+    # the operation we want to describe at / - GET  
     get:
-      description: Returns 'Hello' to the caller
-      # used as the method name of the controller
-      operationId: hello
-      parameters:
-        - name: name
-          in: query
-          description: The name of the person to whom to say hello
-          required: false
-          type: string
+      # a long description of the operation.
+      # summary can also be used for shorter ones
+      description: "A description: This endpoint returns all todos in database"
+      summary: "A shorter summary of the operation"
+      # operationId is a unique string used to identify an operation
+      # GET is the operation
+      operationId: "GetAllTodos"
+      parameters: []
       responses:
         "200":
-          description: Success
+          description: "an array of todos"
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+            type: "array"
+            items:
+              # reference the definition of Todo
+              $ref: "#/definitions/Todo"
   /swagger:
     x-swagger-pipe: swagger_raw
-# complex objects have schema definitions
+# in open API 3 this sections is called components/schemas instead of
+# definitions
 definitions:
   Todo:
-    # a definition can have a type
-    type: "object"
-    # and has properties
+    type: object
+    # Specify the properties of an object
+    # All properties are optional by default.
+    # A required list can be created to adjust which properties are required:
+    # required:
+    #   - todo_id
+    #   - todo
+    # 'required' is object-level - not property level
     properties:
+      # each property must have its own schema defined
       todo_id:
         type: "integer"
         description: "Id for the todo"
+        # poperties can be defined as read only:
+        # readOnly: true
       todo:
         type: "string"
         description: "The todo itself"
-      # dates have a type of string with a format of date-time
       datecreated:
         type: "string"
         format: "date-time"
@@ -69,7 +73,7 @@ definitions:
         type: "string"
         format: "date-time"
         description: "Date the todo is due"
-      completed:
+      completed: 
         type: "boolean"
         description: "Indicate if the todo is completed or not"
-
+    
