@@ -2,32 +2,24 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Todo API
-# during dev, should point to your local machine
 host: localhost:10010
-# basePath prefixes all resource paths 
 basePath: /
-# 
 schemes:
-  # tip: remove http to make production-grade
   - http
   - https
-# format of bodies a client can send (Content-Type)
+# consumes and produces are both synonyms for the Content-Type type header
+# Content-Type for requests represents data sent to the server
+# Content-Type for responses represent data received in the response
+# Accept is the type of data that a client expects from the server
 consumes:
   - application/json
-# format of the responses to the client (Accepts)
 produces:
   - application/json
 paths:
-  # describe get requests at the baseUrl endpoint
-  /:
-    # the operation we want to describe at / - GET  
+  /: 
     get:
-      # a long description of the operation.
-      # summary can also be used for shorter ones
       description: "A description: This endpoint returns all todos in database"
       summary: "A shorter summary of the operation"
-      # operationId is a unique string used to identify an operation
-      # GET is the operation
       operationId: "GetAllTodos"
       parameters: []
       responses:
@@ -36,29 +28,59 @@ paths:
           schema:
             type: "array"
             items:
-              # reference the definition of Todo
               $ref: "#/definitions/Todo"
+    post:
+      description: 'Add a new Todo'
+      # operationId will become clear once we start writing code
+      operationId: 'AddTodo'
+      # produces is a synonym for Content-Type
+      produces: 
+        - 'application/json'
+      # Our request has parameters
+      # Parameters is an array, so each parameter definition must be preceded
+      # by a -
+      parameters:
+        # 'in' refers to the location of the parameters. It could be one of:
+        # - body
+        # - formData
+        # - path (must be set to required - because they're in the path)
+        # - query
+        # - header
+        # - cookie
+        - in: 'body'
+          # the name of the propery sent in the request
+          name: 'todo'
+          description: 'the Todo to be added'
+          # default values can also be specified, but in the case of required
+          # properties it doesn't make sense to use them - the client should
+          # be sending them through.
+          required: true
+          # an enum parameter can also be used to describe a restriction on
+          # the values that can be sent. The type inside the enum must match
+          # the type of the parameter:
+          # - type: string
+          # - enum: [bob, sam, aaron]
+          
+          # 'schema' is only used with 'in: body' parameters
+          # 'type' must be used for all other parameter locations
+          schema: 
+            $ref: "#/definitions/Todo"
+      responses:
+        '201': 
+          description: 'Successful Todo add'
+      # this will also become clear once we start writing code
+      x-swagger-router-controller: "AddTodo"
+      
+      
   /swagger:
     x-swagger-pipe: swagger_raw
-# in open API 3 this sections is called components/schemas instead of
-# definitions
 definitions:
   Todo:
     type: object
-    # Specify the properties of an object
-    # All properties are optional by default.
-    # A required list can be created to adjust which properties are required:
-    # required:
-    #   - todo_id
-    #   - todo
-    # 'required' is object-level - not property level
     properties:
-      # each property must have its own schema defined
       todo_id:
         type: "integer"
         description: "Id for the todo"
-        # poperties can be defined as read only:
-        # readOnly: true
       todo:
         type: "string"
         description: "The todo itself"
