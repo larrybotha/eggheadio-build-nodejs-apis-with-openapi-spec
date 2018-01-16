@@ -42,37 +42,52 @@ paths:
           description: 'Successful Todo add'
       x-swagger-router-controller: "AddTodo"
       
-  # get a todo by its id
   /todo/{id}:
     get:
       description: 'Retrieve a single todo by id'
       operationId: 'FindTodoById'
-      # returns json in the response
       produces:
         - 'application/json'
-      # request has the following parameters
       parameters:
-        # the name of the parameter in the path
         - name: 'id'
-          # which we can find in the path of the request
           in: 'path'
           description: 'Id of the todo to get'
-          # id is required because it has to be in the path in order for us to be able
-          # to retrieve anything
           required: true
-          # we want the id to be an integer
           type: 'integer'
-          # int64 refers to long integers / 64-bit integers: 
-          # https://swagger.io/docs/specification/data-models/data-types/
           format: 'int64'
-      # we need to describe the possible responses a client can expect
       responses:
         '200': 
           description: 'Todo response'
-          # and we specify the schema of the data in the response
           schema:
             $ref: "#/definitions/Todo"
       x-swagger-router-controller: 'FindTodoById'
+    # create a delete method for deleting a todo by id
+    delete:
+      # we should describe it
+      description: 'delete a todo by id'
+      # and provide an operationId, for which we will find out later why
+      # we are doing this
+      operationId: 'DeleteTodoById'
+      # there are paramaters required in order to execute this request
+      parameters:
+        # the only parameter we have is the id
+        - name: 'id'
+          # which we find in the path
+          in: 'path'
+          description: 'Id of the Todo to delete'
+          # so it is a required parameter
+          required: true
+          # and we expect an integer
+          type: 'integer'
+          # but not just any integer - a 64-bit integer
+          format: 'int64'
+      # every request to our API needs to respond in some way
+      responses:
+        # and delete requests respond with 204 to indicate success
+        '204':
+          # let's alo describe what happened for the Swagger docs
+          description: 'todo deleted'
+      x-swagger-router-controller: 'DeleteTodoById'
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
