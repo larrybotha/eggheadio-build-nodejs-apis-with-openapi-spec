@@ -42,34 +42,22 @@ paths:
           description: 'Successful Todo add'
       x-swagger-router-controller: "AddTodo"
       
-  # get a todo by its id
   /todo/{id}:
     get:
       description: 'Retrieve a single todo by id'
       operationId: 'FindTodoById'
-      # returns json in the response
       produces:
         - 'application/json'
-      # request has the following parameters
       parameters:
-        # the name of the parameter in the path
         - name: 'id'
-          # which we can find in the path of the request
           in: 'path'
           description: 'Id of the todo to get'
-          # id is required because it has to be in the path in order for us to be able
-          # to retrieve anything
           required: true
-          # we want the id to be an integer
           type: 'integer'
-          # int64 refers to long integers / 64-bit integers: 
-          # https://swagger.io/docs/specification/data-models/data-types/
           format: 'int64'
-      # we need to describe the possible responses a client can expect
       responses:
         '200': 
           description: 'Todo response'
-          # and we specify the schema of the data in the response
           schema:
             $ref: "#/definitions/Todo"
       x-swagger-router-controller: 'FindTodoById'
