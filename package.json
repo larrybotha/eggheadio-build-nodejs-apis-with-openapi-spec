@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "$(npm bin)/swagger project start todo-api",
-    "mocks": "$(npm bin)/swagger project start -m",
+    "mocks": "$(npm bin)/swagger project start todo-api -m",
     "test": "$(npm bin)/swagger project test",
     "edit": "$(npm bin)/swagger project edit"
   },
