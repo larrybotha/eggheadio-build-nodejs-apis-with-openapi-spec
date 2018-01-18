@@ -25,6 +25,9 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
+      # because the swagger router controller was missing, I was getting
+      # 404s on requests to this endpoint
+      x-swagger-router-controller: "GetAllTodos"
     post:
       description: 'Add a new Todo'
       operationId: 'AddTodo'
