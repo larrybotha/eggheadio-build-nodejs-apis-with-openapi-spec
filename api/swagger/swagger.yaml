@@ -77,44 +77,24 @@ paths:
           description: 'todo deleted'
       x-swagger-router-controller: 'DeleteTodoById'
 
-    # add a method to allow for updating a user by id
     put:
-      # describe what the endpoint does
       description: 'update a single todo by id'
       operationId: 'UpdateTodoById'
       parameters:
-        # we need a parameter to indicate which todo we're updating
         - name: 'id'
-          # which we get from the path
           in: 'path'
           description: 'the id to update'
-          # and is an integer
           type: 'integer'
-          # which is 64-bit
           format: 'int46'
-          # and is required because it has to be in the path for us to 
-          # update anything
           required: true
-        # we also need the actual object that will be used to update 
-        # the todo
         - name: 'updated_todo'
-          # which we will send through in the body of the request
           in: 'body'
-          # and is also required, otherwise we have nothing to update our
-          # todo with
           required: true
-          # we've already defined the schema, so we can reference it from
-          # our existing definition
           schema:
             $ref: "#/definitions/Todo"
-      # as always, we need to provide a response to a request from the
-      # client
       responses:
-        # we can say the update was successful
         '200':
           description: 'todo updated'
-        # otherwise we can indicate there was some error in the request 
-        # using a 4XX response
         '400':
           description: 'error updating todo'
       x-swagger-router-controller: 'UpdateTodoById'
