@@ -25,16 +25,6 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
-      # We now see that GetAllTodos here is the function that Swagger
-      # will look for in our mocks.
-      # If this name doesn't:
-      # - match our operationId AND
-      # - match the name of the file in our mocks folder AND
-      # - match the name of the exported middleware in the mock file
-      # then the mock will return a default sample object based on the
-      # schema we defined in the endpoint
-      # If we don't provide x-swagger-router-controller then our endpoint
-      # will 404
       x-swagger-router-controller: "GetAllTodos"
     post:
       description: 'Add a new Todo'
