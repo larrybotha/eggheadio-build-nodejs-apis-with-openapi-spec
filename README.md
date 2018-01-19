@@ -17,3 +17,9 @@ $ npm run dev
 ```bash
 $ npm run edit
 ```
+
+## Elastic Search
+
+Video 9 requires an installation of ElasticSearch and dummy data. Data and
+instructions for installation can be found here:
+https://github.com/rekibnikufesin/nodejs-api-swagger/tree/master#running-elasticsearch-and-sample-data

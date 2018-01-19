@@ -14,8 +14,8 @@
     "test": "$(npm bin)/swagger project test",
     "edit": "$(npm bin)/swagger project edit"
   },
-
   "dependencies": {
+    "elasticsearch": "^14.0.0",
     "express": "^4.12.3",
     "swagger-express-mw": "^0.1.0"
   },

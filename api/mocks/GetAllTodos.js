@@ -19,14 +19,11 @@ const todos = [
   },
 ];
 
-// we define a function, which is actually a middleware, that will be used
-// by Swagger when mocking endpoints
-// 'GetAllTodos' matches the x-swagger-router-controller, which references
-// the operationId.
-// Both this file and the function exported must match the
-// x-swagger-router-controller in order for endpoints to have custom mocks.
 const GetAllTodos = (req, res, next) => {
   res.json(todos);
 };
 
+// The name of the functions in the export here is what operationId
+// in the swagger doc references.
+// This file is what x-swagger-router-controller references.
 module.exports = {GetAllTodos};
