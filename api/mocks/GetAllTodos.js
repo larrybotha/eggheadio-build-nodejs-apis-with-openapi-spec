@@ -23,4 +23,7 @@ const GetAllTodos = (req, res, next) => {
   res.json(todos);
 };
 
+// The name of the functions in the export here is what operationId
+// in the swagger doc references.
+// This file is what x-swagger-router-controller references.
 module.exports = {GetAllTodos};
