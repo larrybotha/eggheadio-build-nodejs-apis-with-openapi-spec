@@ -26,8 +26,11 @@ paths:
             items:
               $ref: "#/definitions/Todo"
       x-swagger-router-controller: "GetAllTodos"
+    # we'll now create a handler for this post request
     post:
       description: 'Add a new Todo'
+      # this is the function that swagger will look for in the file defined
+      # by x-swagger-router-controller
       operationId: 'AddTodo'
       produces:
         - 'application/json'
@@ -41,6 +44,8 @@ paths:
       responses:
         '201':
           description: 'Successful Todo add'
+      # this is the name of the file swagger will use to look for a named export
+      # of a function that we specify at operationId
       x-swagger-router-controller: "AddTodo"
 
   /todo/{id}:
