@@ -16,8 +16,6 @@ paths:
     get:
       description: "A description: This endpoint returns all todos in database"
       summary: "A shorter summary of the operation"
-      # [2] this is the function that swagger will look for in our file
-      # defined at [1]
       operationId: "GetAllTodos"
       parameters: []
       responses:
@@ -27,15 +25,6 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
-      # [1] this is the file that swagger is going to look for in the
-      # api/controllers folder (configured via swagger.yml)
-      # From annotations on video 8, I thought this and operationId needed
-      # to be the same.
-      # This is incorrect. This needs to match a filename in the paths 
-      # defined in swagger.yaml for the api, and the mocked api only.
-      # This file will export functions. operationIds are matched to the
-      # names of the exported functions in the file defined by 
-      # x-swagger-router-controller
       x-swagger-router-controller: "GetAllTodos"
     post:
       description: 'Add a new Todo'
