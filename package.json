@@ -15,6 +15,7 @@
     "edit": "$(npm bin)/swagger project edit"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "elasticsearch": "^14.0.0",
     "express": "^4.12.3",
     "swagger-express-mw": "^0.1.0"
