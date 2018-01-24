@@ -98,6 +98,14 @@ paths:
       responses:
         '200':
           description: 'todo updated'
+          # We were getting that void error again on this request
+          # If we don't define a schema for the response, then swagger
+          # will throw the following error:
+          # Response validation failed: void does not allow a value
+          # void refers to there being no schema, when we are sending
+          # something back
+          schema:
+            $ref: "#/definitions/Todo"
         '400':
           description: 'error updating todo'
       x-swagger-router-controller: 'UpdateTodoById'
