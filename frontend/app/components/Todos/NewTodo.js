@@ -3,7 +3,7 @@ var AddTodo = require('./AddTodo');
 
 var NewTodo = React.createClass({
   propTypes: {
-    addTodo: React.PropTypes.func.isRequired
+    addTodo: React.PropTypes.func.isRequired,
   },
   render: function() {
     return (
@@ -11,8 +11,8 @@ var NewTodo = React.createClass({
         <h3>Add New Todo</h3>
         <AddTodo addTodo={this.props.addTodo} />
       </div>
-    )
-  }
+    );
+  },
 });
 
 module.exports = NewTodo;

@@ -15,17 +15,17 @@ var Todo = React.createClass({
           todo: '',
           author: '',
           duedate: '',
-          completed: ''
-        }
+	  completed: '',
+	},
       ],
       todo: {
         todo_id: '',
         todo: '',
         author: '',
         duedate: '',
-        completed: ''
-      }
-    }
+	completed: '',
+      },
+    };
   },
   componentDidMount: function() {
     // get Todos from Elasticsearch
@@ -43,7 +43,7 @@ var Todo = React.createClass({
         console.log(res);
       })
   },
-  displayTodo: function(todo){
+  displayTodo: function(todo) {
     this.setState({todo: todo});
   },
   render: function() {
@@ -59,8 +59,8 @@ var Todo = React.createClass({
           <NewTodo addTodo={this.handleAddTodo} />
         </div>
       </div>
-    )
-  }
-})
+    );
+  },
+});
 
 module.exports = Todo;

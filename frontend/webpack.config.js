@@ -1,7 +1,7 @@
 module.exports = {
-  entry: "./app/App.js",
+  entry: './app/App.js',
   output: {
-    filename: "public/bundle.js"
+    filename: 'public/bundle.js',
   },
   module: {
     loaders: [
@@ -10,9 +10,9 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015']
-        }
-      }
-    ]
-  }
-}
+          presets: ['react', 'es2015'],
+        },
+      },
+    ],
+  },
+};
