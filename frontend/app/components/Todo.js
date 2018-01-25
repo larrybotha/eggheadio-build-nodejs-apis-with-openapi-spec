@@ -15,33 +15,28 @@ var Todo = React.createClass({
           todo: '',
           author: '',
           duedate: '',
-	  completed: '',
-	},
+          completed: '',
+        },
       ],
       todo: {
         todo_id: '',
         todo: '',
         author: '',
         duedate: '',
-	completed: '',
+        completed: '',
       },
     };
   },
   componentDidMount: function() {
-    // get Todos from Elasticsearch
-    var _this = this;
-    Axios.get('http://localhost:10010')
-      .then(function(res){
-        _this.setState({todos: res.data});
-      })
+    // get todos from elastic search
+    Axios.get('http://localhost:10010').then(res => {
+      this.setState({todos: res.data});
+    });
   },
   handleAddTodo: function(newtodo) {
-    // post new note to Elasticsearch
+    // add new todo to elastic search
     newtodo.todo_id = this.state.todos.length;
-    Axios.post('http://localhost:10010', newtodo)
-      .then(function(res){
-        console.log(res);
-      })
+    Axios.post('http://localhost:10010', newtodo).then(res => console.log(res));
   },
   displayTodo: function(todo) {
     this.setState({todo: todo});
