@@ -12,7 +12,8 @@
     "dev": "$(npm bin)/swagger project start todo-api",
     "mocks": "$(npm bin)/swagger project start todo-api -m",
     "test": "$(npm bin)/swagger project test",
-    "edit": "$(npm bin)/swagger project edit"
+    "edit": "$(npm bin)/swagger project edit",
+    "loadtest": "$(npm bin)/artillery run load-test.yml"
   },
   "dependencies": {
     "cors": "^2.8.4",
@@ -21,6 +22,7 @@
     "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
+    "artillery": "^1.6.0-12",
     "should": "^7.1.0",
     "supertest": "^1.0.0",
     "swagger": "^0.7.5",
