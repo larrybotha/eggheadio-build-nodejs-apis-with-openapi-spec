@@ -1,6 +1,10 @@
 const esClient = require('../helpers/es');
+const monitor = require('../helpers/monitor');
 
 const GetAllTodos = (req, res) => {
+  // start a monitor when a request is made
+  const start = monitor();
+
   esClient.search(
     {
       index: 'todo',
@@ -16,6 +20,11 @@ const GetAllTodos = (req, res) => {
 
         res.header('Content-Type', 'application/json');
         res.json(results);
+
+        // and then monitor when we are making a response by sending through the
+        // start time, and a tag so we can identify which endpoint we are
+        // monitoring
+        monitor(start, 'GetAllTodos');
       }
     }
   );
